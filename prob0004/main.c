@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
 				for (num1 = 999; num1 >= 100; num1--) {
 					num2 = pal / num1;
 					if (num2 >= 100 && num2 <=999 && num1 * num2 == pal) {
-						printf("%i %i\n", num1, num2);
+						printf("%i * %i = %i\n", num1, num2, pal);
 					}
 				}
 			}
