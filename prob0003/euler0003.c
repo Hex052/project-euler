@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void){
+int main(void) {
 	long int euler = 600851475143;
 	int i = 2, largestFactor;
 	printf("Prime factors of 600851475143: ");
