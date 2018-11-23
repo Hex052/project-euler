@@ -9,9 +9,9 @@
 int main(int argc, char const *argv[]) {
 	unsigned long int sum = 0;
 	int isPrime = 1;
-	for (int upto = 2; upto < 2000000; upto++){
+	for (double upto = 2; upto < 2000000; upto++){
 		isPrime = 1;
-		for (int factor = 2; factor < upto; factor++){
+		for (int factor = 2; factor < sqrt(upto); factor++){
 			if (upto % factor == 0){
 				isPrime = 0;
 				break;
