@@ -1,2 +1,2 @@
 # project-euler
-My work on project euler problems.
+My work on problems for Project Euler. For fun and practice.
