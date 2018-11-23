@@ -1,3 +1,4 @@
+//compile with -lm
 #include <stdio.h>
 
 int main(void){
