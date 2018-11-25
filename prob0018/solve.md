@@ -1,9 +1,9 @@
-#Usage
+# Usage
 
 For problem 18, set ROWS to 15, and for problem 67, set to 100. Arguments are the input triangle file and output triangle file.
 If no output file is given, no file is written.
 
-#Methods
+# Methods
 
 The path with the greatest sum can be calculated by starting from row 2 and
 proceeding downwards, adding the greatest from the one above and the one above and to the left (ignore the other).
