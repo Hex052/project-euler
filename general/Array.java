@@ -68,6 +68,7 @@ public class Array {
 		return out;
 	}
 
+<<<<<<< HEAD
 	//Prints an array to stdout
 	protected static void printarr(long[] in) {
 		System.out.print("[ " + in[0]);
@@ -81,4 +82,7 @@ public class Array {
 			System.out.print(" , " + in[i]);
 		System.out.println(" ]");
 	}
+=======
+	//Return as a string the contents of an array
+>>>>>>> e0845bdcfb784dca53c1d1833b94eaad1aecf627
 }
