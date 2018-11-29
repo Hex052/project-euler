@@ -1,7 +1,8 @@
+package prob0022;
+
 import java.util.Scanner;
 import java.io.File;
 import java.util.Arrays;
-
 public class NameScores {
 	public static void main(String[] args) {
 		if (args.length < 1) {
