@@ -1,0 +1,9 @@
+#!/bin/sh
+nums=`java prob0026.FractionDigitCycles | cut -f1 | cut -d: -f2`
+for num in $nums
+do
+	if ! grep -xq $num plist.txt
+	then
+		echo "$num was not in plist.txt"
+	fi
+done
