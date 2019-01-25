@@ -1,0 +1,13 @@
+#!/bin/sh
+size=1
+sum=1
+count=1
+while [ $size -lt 1001 ]; do
+	for i in 1 2 3 4; do
+		count=$(( $count + $size + 1 ))
+		sum=$(( $sum + $count ))
+	done
+	size=$(( $size + 2 ))
+	echo $sum
+done
+echo $sum > /dev/stderr
