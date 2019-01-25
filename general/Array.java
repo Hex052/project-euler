@@ -69,13 +69,13 @@ public class Array {
 	}
 
 	//Prints an array to stdout
-	protected static void printarr(long[] in) {
+	public static void printarr(long[] in) {
 		System.out.print("[ " + in[0]);
 		for (int i = 1; i < in.length; i++)
 			System.out.print(" , " + in[i]);
 		System.out.println(" ]");
 	}
-	protected static void printarr(int[] in) {
+	public static void printarr(int[] in) {
 		System.out.print("[ " + in[0]);
 		for (int i = 1; i < in.length; i++)
 			System.out.print(" , " + in[i]);
