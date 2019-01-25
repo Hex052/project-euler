@@ -58,6 +58,9 @@ public class Factor {
 
 	//Returns true if num is prime, false otherwise.
 	public static boolean isPrime(long num) throws IOException {
+		if (num < 2) {
+			return false;
+		}
 		long target = (long)Math.sqrt((double)num);
 		if (primes.size() == 0 || primes.get(primes.size() - 1) < (long)Math.sqrt((double)num)) {
 			growPrimes(num);
@@ -143,7 +146,7 @@ public class Factor {
 		int[] out = divisors(num);
 		return Array.copyArray(out, out.length - 1);
 	}
-	
+
 	//Set the plist file used
 	public static void setPlist(File f) {
 		plist = f;
