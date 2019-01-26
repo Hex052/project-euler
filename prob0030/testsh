@@ -1,0 +1,28 @@
+#!/bin/bash
+
+digits() {
+	num=$1
+	while [ "$num" ]; do
+		echo "${num:0:1}"
+		num=${num:1:$(( ${#num} - 1 ))}
+	done
+}
+
+if [ $1 ]; then
+	printf "" > $1
+fi
+grandtot=0
+for (( j=2 ; j<354294 ; j++ )); do
+	tot=0
+	for i in `digits $j`; do
+		(( tot += i**5 ))
+	done
+	if [ $1 ]; then
+		echo "num:$j pow:$tot" >> $1
+	fi
+	if [ $tot -eq $j ]; then
+		echo "$j = $tot"
+		(( grandtot += tot ))
+	fi
+done
+echo "Grand Total: $grandtot"

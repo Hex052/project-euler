@@ -1,0 +1,11 @@
+#!/bin/bash
+pow=$(( 9 ** 5 ))
+tot=$pow
+iter=1
+echo "Iteration $iter, length ${#tot}, total $tot"
+
+while [ $iter -le ${#tot} ]; do
+	tot=$(( $pow + $tot ))
+	(( iter++ ))
+	echo "Iteration $iter, length ${#tot}, total $tot"
+done
