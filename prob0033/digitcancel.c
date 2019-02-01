@@ -41,17 +41,15 @@ int main(int argc, char const *argv[]) {
 		logfile = fopen(argv[1], "w");
 	}
 	for (int denom = 12; denom < 100; denom++) {
-		if (isprime(denom))
-			continue;
+
 		for (int num = 10; num < denom; num++) {
-			if (isprime(num))
-				continue;
+
 			if (ones(num) == 0  && ones(denom) == 0) {
 				continue;
 			}
 			if (ones(num) == ones(denom)) {
 				//Using tens/tens
-				if (tens(num) >= tens(denom)) {
+				if (((float)tens(num))/tens(denom) != ((float)num)/denom) {
 					if (logfile) fprintf(logfile, "%d/%d != %d/%d\n",num,denom,tens(num),tens(denom));
 					continue;
 				}
@@ -59,7 +57,7 @@ int main(int argc, char const *argv[]) {
 			}
 			if (ones(num) == tens(denom)) {
 				//Using tens/ones
-				if (tens(num) >= ones(denom)) {
+				if (((float)tens(num))/ones(denom) != ((float)num)/denom) {
 					if (logfile) fprintf(logfile, "%d/%d != %d/%d\n",num,denom,tens(num),ones(denom));
 					continue;
 				}
@@ -67,7 +65,7 @@ int main(int argc, char const *argv[]) {
 			}
 			if (tens(num) == ones(denom)) {
 				//Using ones/tens
-				if (ones(num) >= tens(denom)) {
+				if (((float)ones(num))/tens(denom) != ((float)num)/denom) {
 					if (logfile) fprintf(logfile, "%d/%d != %d/%d\n",num,denom,ones(num),tens(denom));
 					continue;
 				}
@@ -75,7 +73,7 @@ int main(int argc, char const *argv[]) {
 			}
 			if (tens(num) == tens(denom)) {
 				//Using ones/ones
-				if (ones(num) >= ones(denom)) {
+				if (((float)ones(num))/ones(denom) != ((float)num)/denom) {
 					if (logfile) fprintf(logfile, "%d/%d != %d/%d\n",num,denom,ones(num),ones(denom));
 					continue;
 				}
