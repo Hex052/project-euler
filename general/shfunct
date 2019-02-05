@@ -1,0 +1,16 @@
+digits() {
+	digit_num=$1
+	while [ "$digit_num" ]; do
+		echo "${digit_num:0:1}"
+		digit_num=${digit_num:1:$(( ${#digit_num} - 1 ))}
+	done
+	unset digit_num
+}
+factorial() {
+	fact_out=1
+	for (( fcount = 2; fcount <= $1; fcount++ )); do
+		(( fact_out *= fcount ))
+	done
+	echo "$fact_out"
+	unset fact_out fcount
+}

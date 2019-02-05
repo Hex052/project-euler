@@ -1,0 +1,38 @@
+#!/bin/bash
+
+. ./general/shfunct
+
+logfile=
+if [ $1 ]; then
+	logfile="$1"
+	echo -n "" > "$logfile"
+fi
+#echo "$logfile $1"
+
+# 2540160
+for (( i = 10; i <= 2540160; i++ )); do
+	#curr=$i
+	tot=0
+	str_out=
+	for digit in `digits $i`; do
+		fdigit=$(factorial $digit)
+		(( tot += fdigit ))
+		str_out="$str_out + $fdigit"
+		if [ $tot -gt $i ]; then
+			if [ logfile ]; then
+				echo "$i < ${str_out:3}" >> "$logfile"
+			fi
+			continue 2
+		fi
+	done
+	if [ $tot != $i ]; then
+		if [ logfile ]; then
+			echo "$i < ${str_out:3}" >> "$logfile"
+		fi
+		continue
+	fi
+	if [ logfile ]; then
+		echo "$i = ${str_out:3}" >> "$logfile"
+	fi
+	echo "$i = ${str_out:3}"
+done
