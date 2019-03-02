@@ -2,7 +2,7 @@
 #include <iostream>
 #include <chrono>
 #include <vector>
-#include "../general/primesxx.h"
+#include "../general/primes.hpp"
 
 using namespace std;
 

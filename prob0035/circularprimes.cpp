@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <gmpxx.h>
-#include "general/primesxx.h"
+#include "../general/primes.hpp"
 
 using namespace std;
 

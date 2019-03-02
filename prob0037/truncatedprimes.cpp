@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
-#include "general/primesxx.h"
+#include "../general/primes.hpp"
 
 using namespace std;
 #define CHAR_ARR_LEN 10
