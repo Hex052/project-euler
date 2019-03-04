@@ -57,11 +57,17 @@ int main(int argc, char const *argv[]) {
 		exit(2);
 	}
 #else
-	bool *sieve_list = (bool*)malloc(sizeof(bool) * end);
-	if (sieve_list == NULL) {
-		std::cerr << "Could not allocate space of size " << end << "\n"
-		"Try reducing the size of the end, or freeing memory.\n";
-		exit(2);
+	bool *sieve_list = NULL;
+	try {
+		sieve_list = new bool[end];
+		std::fill(sieve_list, sieve_list+end, true);
+	}
+	catch (exception e) {
+		if (sieve_list == NULL) {
+			std::cerr << "Could not allocate space of size " << end << "\n"
+			"Try reducing the size of the end, or freeing memory.\n";
+			exit(2);
+		}
 	}
 #endif
 	if ((file_open = (argc == 4)))
@@ -89,7 +95,7 @@ int main(int argc, char const *argv[]) {
 	*/
 	if (file_open) /* Output to file */ {
 		for (unsigned long long i = 1; i < end;) {
-			if (sieve_list[i])
+			if (i >= start && sieve_list[i])
 				file << ++i << '\n';
 			else
 				i++;
@@ -97,7 +103,7 @@ int main(int argc, char const *argv[]) {
 	}
 	else /* Output to stdout */ {
 		for (unsigned long long i = 1; i < end;) {
-			if (sieve_list[i])
+			if (i >= start && sieve_list[i])
 				std::cout << ++i << '\n';
 			else
 				i++;
