@@ -46,6 +46,19 @@ int main(int argc, char const *argv[]) {
 		<< "Both are inclusive\n";
 		exit(1);
 	}
+	if ((file_open = (argc == 4))) {
+		file.open(argv[3]);
+		std::cerr << "Will write to \'" << argv[3] << "\'.\n";
+	}
+	else {
+		std::cerr << "Will write to stdout.\n";
+	}
+
+	/*
+	* Create array
+	*/
+	std::cerr << "Creating array... ";
+	auto step_start_time = std::chrono::high_resolution_clock::now();
 #ifdef USE_DEQUE
 	deque<bool> sieve_list; //Apparently vector<bool> is broken. Yay.
 	try /* Resize deque, catch bad_alloc */ {
@@ -70,29 +83,33 @@ int main(int argc, char const *argv[]) {
 		}
 	}
 #endif
-	if ((file_open = (argc == 4)))
-		file.open(argv[3]);
+	auto stop_time = std::chrono::high_resolution_clock::now();
+	auto nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time - step_start_time);
+	std::cerr << "Done (" << nsec.count() << " ns)\n";
 
 	/*
 	* Sieve numbers
 	*/
+	std::cerr << "Starting sieve... ";
+	step_start_time = std::chrono::high_resolution_clock::now();
 	for (unsigned long long i = 2; i <= end; i++) {
 		if (!sieve_list[i-1]) {
 			continue;
 		}
 		for (unsigned long long j = (2*i) - 1; j < end; j += i) {
-#ifdef USE_DEQUE
-			sieve_list.at(j) = false;
-#else
 			sieve_list[j] = false;
-#endif
 		}
 	}
+	stop_time = std::chrono::high_resolution_clock::now();
+	nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time - step_start_time);
+	std::cerr << "Done (" << nsec.count() << " ns)\n";
 
 
 	/*
 	* Print primes
 	*/
+	std::cerr << "Printing..." << (file_open ? ' ' : '\n');
+	step_start_time = std::chrono::high_resolution_clock::now();
 	if (file_open) /* Output to file */ {
 		for (unsigned long long i = 1; i < end;) {
 			if (i >= start && sieve_list[i])
@@ -109,12 +126,14 @@ int main(int argc, char const *argv[]) {
 				i++;
 		}
 	}
+	stop_time = std::chrono::high_resolution_clock::now();
+	nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time - step_start_time);
+	std::cerr << "Done (" << nsec.count() << " ns)\n";
 
-
-	//Stop stopwatch
-	auto stop_time = std::chrono::high_resolution_clock::now();
-	auto micros = std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time - start_time);
-	std::cerr << "\nExecution took " << micros.count() << " ns\n";
+	//Stop total stopwatch
+	stop_time = std::chrono::high_resolution_clock::now();
+	nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time - start_time);
+	std::cerr << "\nExecution took " << nsec.count() << " ns\n";
 	return 0;
 }
 
